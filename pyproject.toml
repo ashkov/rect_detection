@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "opencv"
+version = "0.1.0"
+description = ""
+authors = ["Aleksander Ashkov <seberian@mail.ru>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+opencv-contrib-python = "^3.4.4"
+opencv-python = "^3.4.4"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
