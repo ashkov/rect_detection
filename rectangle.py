@@ -1,6 +1,16 @@
 import cv2
 import numpy as np
 
+base_colors = {
+    (255, 0, 0): "blue",
+    (127, 127, 127): "gray",
+    (0, 165, 255): "orange",
+    (0, 0, 0): "black",
+    (0, 255, 255): "yellow",
+    (255, 0, 255): "magenta",
+    (0, 255, 0): "green",
+    (0, 0, 255): "red"
+}
 img = cv2.imread("img.jpg")
 threshold = 100
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -22,7 +32,11 @@ for cnt in contours:
         color = (img[y + int(h / 2), x + int(w / 2)])
         if np.array_equal([255, 255, 255], color):
             continue
-        color_str = "_".join([str(c) for c in color])
+        for bck in base_colors.keys():
+            if all(np.isclose(np.asarray(bck), color, atol=1.0)):
+                color_str = base_colors[bck]
+                break
+                # color_str = "_".join([str(c) for c in color])
         if not color_str in colors:
             colors[color_str] = 1
         else:
@@ -33,3 +47,4 @@ for cnt in contours:
 cv2.imshow("Shapes", img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+print(colors)
