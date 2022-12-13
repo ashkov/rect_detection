@@ -21,7 +21,7 @@ def main():
         'blue': [[110, 50, 70], [130, 255, 255]],
 
     }
-    img = cv2.imread("img.jpg")
+    img = cv2.imread("img.png")
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     del img
     colors = {}

@@ -2,19 +2,19 @@ import cv2
 import numpy as np
 
 hsv_colors = {
-    'gray': [[0, 0, 120], [0, 0, 140]],
-    'black': [[0, 0, 0], [0, 0, 10]],
-    'orange': [[18, 40, 90], [27, 255, 255]],
-    'red': [[0, 200, 200], [10, 255, 255]],
-    'pink': [[140, 200, 200], [170, 255, 255]],
-    'yellow': [[25, 50, 70], [35, 255, 255]],
-    'green': [[40, 50, 70], [70, 255, 255]],
-    'blue': [[110, 50, 70], [130, 255, 255]],
+    'gray': [[0, 0, 125], [0, 0, 129]],
+    'black': [[0, 0, 0], [0, 0, 0]],
+    'orange': [[18, 245, 245], [20, 255, 255]],
+    'red': [[0, 245, 245], [5, 255, 255]],
+    'pink': [[145, 245, 245], [155, 255, 255]],
+    'yellow': [[28, 245, 245], [32, 255, 255]],
+    'green': [[58, 245, 245], [62, 255, 255]],
+    'blue': [[118, 245, 245], [122, 255, 255]],
 
 }
 if not 'img' in locals():
     home = True
-    img = cv2.imread("img.jpg")
+    img = cv2.imread("img1.png")
 hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 del img
 colors = {}
@@ -34,6 +34,9 @@ count_max = None
 count_min = None
 
 for color in sorted(["gray", "black", "orange", "red", "pink", "yellow", "green", "blue"], reverse=True):
+    if not color in colors:
+        continue
+
     if count_max is None or colors[color] >= count_max:
         count_max = colors[color]
         color_max = color
@@ -41,4 +44,5 @@ for color in sorted(["gray", "black", "orange", "red", "pink", "yellow", "green"
         count_min = colors[color]
         color_min = color
 if 'home' in locals():
-    print(colors, color_min, count_min, color_max, count_max)
+    print(colors)
+    print(f"color_min={color_min}, count_min={count_min}, color_max={color_max}, count_max={count_max}")
